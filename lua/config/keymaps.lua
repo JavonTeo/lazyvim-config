@@ -6,3 +6,4 @@ local map = LazyVim.safe_keymap_set
 map({ "n", "x" }, "<leader>gb", "<nop>")
 map({ "n", "x" }, "<leader>gB", "<nop>")
 map({ "n", "x" }, "<leader>gY", "<nop>")
+map("n", "<leader>lw", "<cmd>set wrap!<CR>")
