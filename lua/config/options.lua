@@ -9,6 +9,8 @@ vim.opt.clipboard = "unnamedplus" -- unset LazyVim's clipboard setting
 --   vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 -- end)
 
+vim.g.lazyvim_python_lsp = "basedpyright"
+
 vim.opt.tabstop = 4 -- number of spaces that <Tab> counts for
 vim.opt.shiftwidth = 4 -- number of spaces for each indent level
 vim.opt.smartindent = true -- smart autoindenting on new lines

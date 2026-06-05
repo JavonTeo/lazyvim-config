@@ -26,7 +26,7 @@ return {
           },
         },
         -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
+        -- pyright = {},
         clangd = {},
         ruff = {},
         html = {},
@@ -37,4 +37,3 @@ return {
     },
   },
 }
-
