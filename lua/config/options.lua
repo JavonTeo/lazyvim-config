@@ -60,3 +60,6 @@ vim.diagnostic.config({
   },
 })
 vim.diagnostic.enable(false)
+
+-- Lower semantic token priority so treesitter highlighting wins (priority 100)
+vim.highlight.priorities.semantic_tokens = 90

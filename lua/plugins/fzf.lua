@@ -99,7 +99,7 @@ return {
       { "<leader>fR", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
       { "<leader>fr", "<cmd>FzfLua oldfiles cwd=vim.uv.cwd()<cr>", desc = "Recent (cwd)" },
       { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "Commits" },
-      { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Status" },
+      { "<leader>gS", "<cmd>FzfLua git_status<CR>", desc = "Status" },
       { "<leader>sa", "<cmd>FzfLua autocmds<cr>", desc = "Auto Commands" },
       { "<leader>sb", "<cmd>FzfLua grep_curbuf<cr>", desc = "Buffer" },
       { "<leader>sc", "<cmd>FzfLua command_history<cr>", desc = "Command History" },

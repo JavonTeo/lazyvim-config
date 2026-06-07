@@ -45,13 +45,6 @@ return {
         desc = "Git Blame Line",
       },
       {
-        "<leader>gB",
-        function()
-          Snacks.gitbrowse()
-        end,
-        desc = "Git Browse",
-      },
-      {
         "<leader>gf",
         function()
           Snacks.lazygit.log_file()
@@ -75,10 +68,12 @@ return {
       {
         "<leader>gY",
         function()
-          Snacks.gitbrowse({ open = function(url)
-            vim.fn.setreg("+", url)
-            vim.notify("Yanked URL to clipboard: " .. url)
-          end })
+          Snacks.gitbrowse({
+            open = function(url)
+              vim.fn.setreg("+", url)
+              vim.notify("Yanked URL to clipboard: " .. url)
+            end,
+          })
         end,
         desc = "Git Browse (Yank)",
       },

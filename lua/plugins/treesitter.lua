@@ -1,11 +1,23 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = false,
+    build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter").setup({
-        highlight = { enable = true },
-        indent = { enable = true },
+      require("nvim-treesitter").setup()
+      -- Manually enable treesitter highlight for all buffers (nvim-treesitter v1 + Neovim 0.12)
+      vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+        group = vim.api.nvim_create_augroup("treesitter-highlight", { clear = true }),
+        callback = function(args)
+          local ok, _ = pcall(vim.treesitter.start, args.buf)
+          if not ok then
+            -- If vim.treesitter.start fails, try to install the parser
+            local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype) or vim.bo[args.buf].filetype
+            if lang then
+              vim.cmd("silent! TSInstall! " .. lang)
+            end
+          end
+        end,
       })
     end,
   },

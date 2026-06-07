@@ -57,7 +57,6 @@ return {
           gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end, "Reset Hunk")
         map("n", "<leader>hS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>hu", gs.undo_stage_hunk, "Undo Stage Hunk")
         map("n", "<leader>hR", gs.reset_buffer, "Reset Buffer")
         map("n", "<leader>hp", gs.preview_hunk_inline, "Preview Hunk")
         map("n", "<leader>hb", function()
@@ -66,10 +65,6 @@ return {
         map("n", "<leader>hB", function()
           gs.blame()
         end, "Blame Buffer")
-        map("n", "<leader>hd", gs.diffthis, "Diff This")
-        map("n", "<leader>hD", function()
-          gs.diffthis("~")
-        end, "Diff This ~")
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
@@ -95,5 +90,20 @@ return {
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+    keys = {
+      {
+        "<leader>hd",
+        function()
+          local diffview = require("diffview.lib")
+          local view = diffview.get_current_view()
+          if view then
+            vim.cmd("DiffviewClose")
+          else
+            vim.cmd("DiffviewOpen")
+          end
+        end,
+        desc = "Diffview Toggle",
+      },
+    },
   },
 }
