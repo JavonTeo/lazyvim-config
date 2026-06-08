@@ -56,6 +56,7 @@ return {
         biome = {},
         ty = {},
         ts_ls = {},
+        markdownlint = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -65,6 +66,7 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+        "prettierd",
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -192,6 +194,7 @@ return {
         markdown = { "prettierd", "prettier", stop_after_first = true },
         html = { "prettierd", "prettier", stop_after_first = true },
         css = { "prettierd", "prettier", stop_after_first = true },
+        vue = { "prettierd", "prettier", stop_after_first = true },
       },
     },
   },
