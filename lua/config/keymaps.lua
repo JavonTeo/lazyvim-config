@@ -45,6 +45,7 @@ map("n", "<leader>ud", function()
     vim.notify("Diagnostics enabled globally", vim.log.levels.INFO)
   end
 end, { desc = "[U]I Toggle [D]iagnostics" })
+map("n", "<space>e", vim.diagnostic.open_float, { desc = "Show full diagnostic error" })
 
 -- Toggle auto-format
 vim.g.format_on_save = true

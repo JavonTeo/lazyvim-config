@@ -278,6 +278,13 @@ return {
     },
   },
 
+  -- Todo comments highlighting
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+
   -- Which-key
   {
     "folke/which-key.nvim",
