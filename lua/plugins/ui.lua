@@ -194,16 +194,6 @@ return {
     },
   },
 
-  -- Buffer deletion
-  {
-    "famiu/bufdelete.nvim",
-    cmd = { "Bdelete", "Bwipeout" },
-    keys = {
-      { "<leader>bd", "<cmd>Bdelete<cr>", desc = "Delete Buffer" },
-      { "<leader>bD", "<cmd>Bdelete!<cr>", desc = "Delete Buffer (Force)" },
-    },
-  },
-
   -- Better quickfix
   {
     "kevinhwang91/nvim-bqf",
@@ -274,6 +264,15 @@ return {
         bottom_search = true,
         command_palette = true,
         long_message_to_split = true,
+      },
+    },
+    keys = {
+      {
+        "<leader>N",
+        function()
+          vim.cmd("Noice fzf")
+        end,
+        desc = "Show Noice",
       },
     },
   },
