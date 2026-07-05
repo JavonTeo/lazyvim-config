@@ -57,6 +57,15 @@ return {
         ty = {},
         ts_ls = {},
         markdownlint = {},
+        -- lua_ls = {
+        -- settings = {
+        -- Lua = {
+        --   diagnostics = {
+        --     globals = { "vim" }, -- for lsp recognize `vim` global
+        --   },
+        -- },
+        -- },
+        -- },
       }
 
       -- Ensure the servers and tools above are installed
@@ -80,6 +89,17 @@ return {
         },
       })
 
+      -- NOTE: not sure why putting this in when I already have the above lua_ls config is required for desired effect
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+          },
+        },
+      })
+
       -- Keymaps
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -92,7 +112,7 @@ return {
 
           map("gd", fzf.lsp_definitions, "[G]oto [D]efinition")
           map("gr", fzf.lsp_references, "[G]oto [R]eferences")
-          map("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+          -- map("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
           map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
           map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
           map("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
@@ -135,27 +155,36 @@ return {
     opts = {
       keymap = {
         preset = "default",
-        ["<C-y>"] = { "select_and_accept" },
+        ["<Tab>"] = { "select_and_accept" },
         ["<C-p>"] = { "select_prev", "fallback" },
         ["<C-n>"] = { "select_next", "fallback" },
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
         ["<C-f>"] = { "scroll_documentation_down", "fallback" },
         ["<C-Space>"] = { "show", "show_documentation", "hide_documentation" },
         ["<C-e>"] = { "hide", "fallback" },
-        ["<CR>"] = { "accept", "fallback" },
-        ["<Tab>"] = { "select_next", "fallback" },
-        ["<S-Tab>"] = { "select_prev", "fallback" },
       },
       appearance = {
         nerd_font_variant = "mono",
       },
       completion = {
+        menu = {
+          border = "rounded", -- Enables borders for the main menu
+        },
         documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
     },
+    config = function(_, opts)
+      require("blink.cmp").setup(opts)
+      -- Border styling for the menus
+      -- F7F6D7
+      -- vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = "#cfceb0" })
+      local pmenu_hl_group = vim.api.nvim_get_hl(0, { name = "Pmenu" })
+      pmenu_hl_group.fg = "#96967e"
+      vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", pmenu_hl_group)
+    end,
   },
 
   -- Formatting
