@@ -179,8 +179,6 @@ return {
     config = function(_, opts)
       require("blink.cmp").setup(opts)
       -- Border styling for the menus
-      -- F7F6D7
-      -- vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = "#cfceb0" })
       local pmenu_hl_group = vim.api.nvim_get_hl(0, { name = "Pmenu" })
       pmenu_hl_group.fg = "#96967e"
       vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", pmenu_hl_group)
