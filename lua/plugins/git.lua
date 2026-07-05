@@ -48,21 +48,18 @@ return {
         end, "First Hunk")
 
         -- Actions
-        map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")
-        map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
-        map("v", "<leader>hs", function()
+        map("n", "<leader>gs", gs.stage_hunk, "Stage Hunk")
+        map("v", "<leader>gs", function()
           gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end, "Stage Hunk")
+        map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
         map("v", "<leader>hr", function()
           gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end, "Reset Hunk")
         map("n", "<leader>hS", gs.stage_buffer, "Stage Buffer")
         map("n", "<leader>hR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>hp", gs.preview_hunk_inline, "Preview Hunk")
-        map("n", "<leader>hb", function()
-          gs.blame_line({ full = true })
-        end, "Blame Line")
-        map("n", "<leader>hB", function()
+        map("n", "<leader>gp", gs.preview_hunk_inline, "Preview Hunk")
+        map("n", "<leader>gb", function()
           gs.blame()
         end, "Blame Buffer")
 
@@ -72,24 +69,15 @@ return {
     },
   },
   {
-    "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    keys = {
-      { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-    },
-  },
-  {
     "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
+    opts = {
+      file_history_panel = {
+        win_config = {
+          height = 10,
+        },
+      },
+    },
     keys = {
       {
         "<leader>hd",
@@ -103,6 +91,19 @@ return {
           end
         end,
         desc = "Diffview Toggle",
+      },
+      {
+        "<leader>gf",
+        function()
+          local diffview = require("diffview.lib")
+          local view = diffview.get_current_view()
+          if view then
+            vim.cmd("DiffviewClose")
+          else
+            vim.cmd("DiffviewFileHistory %")
+          end
+        end,
+        desc = "Diffview Curr File History",
       },
     },
   },

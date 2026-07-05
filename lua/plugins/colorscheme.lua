@@ -35,4 +35,22 @@ return {
     "junegunn/seoul256.vim",
     lazy = true,
   },
+  {
+    "sainnhe/everforest",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      vim.g.everforest_enable_italic = true
+      vim.g.everforest_background = "hard" -- choose between soft, medium, hard
+      -- vim.cmd.colorscheme("everforest")
+    end,
+  },
+  {
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    lazy = false,
+    priority = 1000,
+  },
 }
