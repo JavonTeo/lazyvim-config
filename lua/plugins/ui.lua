@@ -16,6 +16,7 @@ return {
         },
       },
       "nvim-tree/nvim-web-devicons",
+      "ecthelionvi/neocomposer.nvim",
     },
     config = function()
       local mode = {
@@ -61,10 +62,12 @@ return {
         sections = {
           lualine_a = { mode },
           lualine_b = { "branch", "diff" },
-          lualine_c = { "filename" },
+          lualine_c = {
+            { require("NeoComposer.ui").status_recording },
+          },
           lualine_x = { harpoon_files.lualine_component },
           lualine_y = {},
-          lualine_z = { "progress" },
+          lualine_z = {},
         },
         inactive_sections = {
           lualine_a = {},
