@@ -6,6 +6,24 @@ vim.g.have_nerd_font = true
 
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
+local function paste()
+  return {
+    -- vim.fn.split(vim.fn.getreg("", "\n")),
+    vim.fn.getreg("", 1, true),
+    vim.fn.getregtype(""),
+  }
+end
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = paste,
+    ["*"] = paste,
+  },
+}
 
 -- Indentation
 vim.opt.tabstop = 2
@@ -48,7 +66,7 @@ vim.opt.splitbelow = true
 vim.opt.inccommand = "split"
 vim.opt.completeopt = "menuone,noselect"
 
--- Diagnostics config (disabled by default, toggle with <leader>ud)
+-- Diagnostics config (enabled by default, toggle with <leader>ud)
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
@@ -60,7 +78,7 @@ vim.diagnostic.config({
     source = "if_many",
   },
 })
-vim.diagnostic.enable(false)
+vim.diagnostic.enable(true)
 
 -- Lower semantic token priority so treesitter highlighting wins (priority 100)
 vim.highlight.priorities.semantic_tokens = 90

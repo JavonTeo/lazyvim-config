@@ -97,16 +97,11 @@ return {
       require("lspsaga").setup({
         symbol_in_winbar = {
           enable = true,
-          separator = "  ",
+          separator = " ",
           hide_keyword = true,
           show_file = true,
-          folder_level = 2,
-          respect_root = false,
+          folder_level = 5,
           color_mode = true,
-        },
-        ui = {
-          border = "rounded",
-          code_action = "💡",
         },
         hover = {
           enable = true,

@@ -14,4 +14,7 @@ return {
   -- | `cycle_prev`        | `<c-p>` | Cycles available macros backward                                                      |
   -- | `toggle_record`     | `q`     | Starts recording, press again to end recording                                        |
   -- | `yank_macro`        | `yq`    | Yank the currently selected macro, in human readable format into the default register |
+  -- TODO: use neo-clip for better register control
+  -- TODO: persist dap breakpoints
+  -- TODO: git worktree seperation, when doing fzf search exclude files in worktree
 }

@@ -100,6 +100,19 @@ return {
         },
       })
 
+      -- vim.lsp.config("cssls", {
+      --   filetypes = {
+      --     "css",
+      --     "scss",
+      --     "less",
+      --     "javascript",
+      --     "javascriptreact",
+      --     "typescript",
+      --     "typescriptreact",
+      --     "vue",
+      --   },
+      -- })
+
       -- Keymaps
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -155,7 +168,7 @@ return {
     opts = {
       keymap = {
         preset = "default",
-        ["<Tab>"] = { "select_and_accept" },
+        ["<Tab>"] = { "select_and_accept", "fallback" },
         ["<C-p>"] = { "select_prev", "fallback" },
         ["<C-n>"] = { "select_next", "fallback" },
         ["<C-b>"] = { "scroll_documentation_up", "fallback" },
